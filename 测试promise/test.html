@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./MyPromise.js"></script>
+  </head>
+  <body>
+    <style>
+      #outer {
+        padding: 20px;
+        background: #616161;
+      }
+
+      #inner {
+        width: 100px;
+        height: 100px;
+        background: #757575;
+      }
+    </style>
+
+    <div id="outer">
+      <div id="inner" onclick="handler()"></div>
+    </div>
+    <script>
+      function handler() {
+        // MyPromise.resolve()
+        //   .then(() => {
+        //     return new Error('error!!!');
+        //   })
+        //   .then((res) => {
+        //     console.log('then: ', res);
+        //   })
+        //   .catch((err) => {
+        //     console.log('catch: ', err);
+        //   });
+        ////测试catch
+        // MyPromise.resolve(1)
+        //   .then((res) => {
+        //     console.log(res);
+        //     return 2;
+        //   })
+        //   .catch((err) => {
+        //     return 3;
+        //   })
+        //   .then((res) => {
+        //     console.log(res);
+        //   });
+        ////promise-----------------------
+        // const p1 = new MyPromise((resolve, reject) => {
+        //   resolve(1); //同步executor测试
+        //   reject('error');
+        //   resolve('success2');
+        // });
+        // ////测试resolve--------------------
+        // MyPromise.resolve(1);
+        // const p1 = new MyPromise((resolve, reject) => {
+        //   resolve(1);
+        // });
+        // p1.then((res) => {
+        //   console.log(res);
+        //   return 2; //链式调用测试
+        // })
+        //   .then() //值穿透测试
+        //   .then((res) => {
+        //     console.log(res);
+        //     return new MyPromise((resolve, reject) => {
+        //       resolve(3); //返回Promise测试
+        //     });
+        //   })
+        //   .then((res) => {
+        //     console.log(res);
+        //     throw new Error('reject测试'); //reject测试
+        //   })
+        //   .then(
+        //     () => {},
+        //     (err) => {
+        //       console.log(err);
+        //       throw new Error('reject测试catch'); //reject测试
+        //     }
+        //   )
+        //   .catch((err) => {
+        //     console.log(err);
+        //   })
+        //   .finally(() => {
+        //     console.log('finally');
+        //   });
+        ////测试all--------------------
+        // let p1 = MyPromise.resolve('成功了');
+        // let p2 = new MyPromise((resolve, reject) => {
+        //   resolve('success');
+        // });
+        // let p3 = MyPromise.reject('失败');
+        // // MyPromise.all([p1, p2])
+        // //   .then((result) => {
+        // //     console.log(result); //['成功了', 'success']
+        // //   })
+        // //   .catch((error) => {
+        // //     console.log(error);
+        // //   });
+        // MyPromise.all([p1, p3, p2])
+        //   .then((result) => {
+        //     console.log(result);
+        //   })
+        //   .catch((error) => {
+        //     console.log(error); // 失败了，打出 '失败'
+        //   });
+        ////测试race--------------
+        // let p1 = new MyPromise((resolve, reject) => {
+        //   setTimeout(() => {
+        //     resolve('success');
+        //   }, 500);
+        // });
+        // let p2 = new MyPromise((resolve, reject) => {
+        //   setTimeout(() => {
+        //     reject('failed');
+        //   }, 1000);
+        // });
+        // MyPromise.race([p1, p2])
+        //   .then((result) => {
+        //     console.log(result);
+        //   })
+        //   .catch((error) => {
+        //     console.log(error); // 打开的是 'failed'
+        //   });
+      }
+    </script>
+  </body>
+</html>
